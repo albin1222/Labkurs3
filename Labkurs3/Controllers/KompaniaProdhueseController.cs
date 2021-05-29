@@ -13,122 +13,122 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Labkurs3.Controllers
 {
-   
-        
-            [Route("api/[controller]")]
-            [ApiController]
-        public class KompaniaProdhueseController : ControllerBase
+
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class KompaniaProdhueseController : ControllerBase
+    {
+        private readonly IConfiguration _configuration;
+
+
+        public KompaniaProdhueseController(IConfiguration configuration)
         {
-            private readonly IConfiguration _configuration;
-            
+            _configuration = configuration;
 
-            public KompaniaProdhueseController(IConfiguration configuration)
-            {
-                _configuration = configuration;
-                
-            }
+        }
 
-            [HttpGet]
-            public JsonResult Get()
-            {
-                string query = @"
+        [HttpGet]
+        public JsonResult Get()
+        {
+            string query = @"
                     select KompaniaID, EmriKompanis, NumriBiznesit from dbo.KompaniaProdhuese";
-                DataTable table = new DataTable();
-                string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
-                SqlDataReader myReader;
-                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCon.Open();
-                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                    {
-                        myReader = myCommand.ExecuteReader();
-                        table.Load(myReader); ;
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
 
-                        myReader.Close();
-                        myCon.Close();
-                    }
+                    myReader.Close();
+                    myCon.Close();
                 }
-
-                return new JsonResult(table);
             }
 
-            [HttpPost]
-            public JsonResult Post(KompaniaProdhuese kmp)
-            {
-                string query = @"
+            return new JsonResult(table);
+        }
+
+        [HttpPost]
+        public JsonResult Post(KompaniaProdhuese kmp)
+        {
+            string query = @"
                     insert into dbo.KompaniaProdhuese values
                     ('" + kmp.EmriKompanis + @"'
                     ,'" + kmp.NumriBiznesit + @"'
                     )
                     ";
-                DataTable table = new DataTable();
-                string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
-                SqlDataReader myReader;
-                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-                {
-                    myCon.Open();
-                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                    {
-                        myReader = myCommand.ExecuteReader();
-                        table.Load(myReader); ;
-
-                        myReader.Close();
-                        myCon.Close();
-                    }
-                }
-                return new JsonResult("Added Succesfully");
-            }
-            [HttpPut]
-            public JsonResult Put(KompaniaProdhuese kmp)
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
-                string query = @"
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult("Added Succesfully");
+        }
+        [HttpPut]
+        public JsonResult Put(KompaniaProdhuese kmp)
+        {
+            string query = @"
                     update dbo.KompaniaProdhuese set 
                     EmriKompanis = '" + kmp.EmriKompanis + @"'
                     ,NumriBiznesit = '" + kmp.NumriBiznesit + @"'
                     where KompaniaID = " + kmp.KompaniaID + @"
                     ";
-                DataTable table = new DataTable();
-                string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
-                SqlDataReader myReader;
-                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-                {
-                    myCon.Open();
-                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                    {
-                        myReader = myCommand.ExecuteReader();
-                        table.Load(myReader); ;
-
-                        myReader.Close();
-                        myCon.Close();
-                    }
-                }
-                return new JsonResult("Updated Succesfully");
-            }
-
-            [HttpDelete("{id}")]
-            public JsonResult Delete(int id)
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
-                string query = @"
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult("Updated Succesfully");
+        }
+
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            string query = @"
                     delete from dbo.KompaniaProdhuese 
                     where KompaniaID = " + id + @"
                     ";
-                DataTable table = new DataTable();
-                string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
-                SqlDataReader myReader;
-                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCon.Open();
-                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                    {
-                        myReader = myCommand.ExecuteReader();
-                        table.Load(myReader); ;
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
 
-                        myReader.Close();
-                        myCon.Close();
-                    }
+                    myReader.Close();
+                    myCon.Close();
                 }
-                return new JsonResult("Deleted Succesfully");
             }
+            return new JsonResult("Deleted Succesfully");
         }
     }
-    
+}
+

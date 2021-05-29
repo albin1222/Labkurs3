@@ -13,25 +13,26 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Labkurs3.Controllers
 {
-    
-            [Route("api/[controller]")]
-            [ApiController]
-        public class LlojetePrudukteveController : ControllerBase
-        {
-            private readonly IConfiguration _configuration;
-            
 
-            public LlojetePrudukteveController(IConfiguration configuration)
-            {
-                _configuration = configuration;
-                
-            }
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LlojeteProdukteveController : ControllerBase
+    {
+        private readonly IConfiguration _configuration;
+
+
+        public LlojeteProdukteveController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+
+        }
 
         [HttpGet]
         public JsonResult Get()
         {
             string query = @"
-            select IdeProduktit, LlojiIProduktit  from dbo.LlojeteProdukteve ";
+                    select IdeProduktit, LlojiIProduktit  from dbo.LlojeteProdukteve";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
             SqlDataReader myReader;
@@ -42,11 +43,12 @@ namespace Labkurs3.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader); ;
+
                     myReader.Close();
                     myCon.Close();
-
                 }
             }
+
             return new JsonResult(table);
         }
 
@@ -54,14 +56,11 @@ namespace Labkurs3.Controllers
         public JsonResult Post(LlojeteProdukteve llp)
         {
             string query = @"
-            insert into dbo.LlojeteProdukteve 
-             (IdeProduktit,LlojiIProduktit)
-              values
-            (
-                '" + llp.LlojiIProduktit + @"'
-              
-               )
-             ";
+                    insert into dbo.LlojeteProdukteve values
+                    ('" + llp.IdeProduktit + @"'
+                    ,'" + llp.LlojiIProduktit + @"'
+                    )
+                    ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
             SqlDataReader myReader;
@@ -72,21 +71,21 @@ namespace Labkurs3.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader); ;
+
                     myReader.Close();
                     myCon.Close();
-
                 }
             }
-
-            return new JsonResult("Added Successfully");
+            return new JsonResult("Added Succesfully");
         }
-
         [HttpPut]
         public JsonResult Put(LlojeteProdukteve llp)
         {
             string query = @"
                     update dbo.LlojeteProdukteve set 
-                    LlojiIProduktit = '" + llp.LlojiIProduktit + @"'
+                    IdeProduktit = '" + llp.IdeProduktit + @"'
+                    ,LlojiIProduktit = '" + llp.LlojiIProduktit + @"'
+                   
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
@@ -110,9 +109,9 @@ namespace Labkurs3.Controllers
         public JsonResult Delete(int id)
         {
             string query = @"
-                      delete from dbo.LlojeteProdukteve
-                      where IdeProduktit = " + id + @" 
-              ";
+                    delete from dbo.LlojeteProdukteve 
+                    where IdeProduktit = " + id + @"
+                    ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
             SqlDataReader myReader;
@@ -123,13 +122,12 @@ namespace Labkurs3.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader); ;
+
                     myReader.Close();
                     myCon.Close();
-
                 }
             }
-
-            return new JsonResult("Deleted Successfully");
+            return new JsonResult("Deleted Succesfully");
         }
     }
 }
