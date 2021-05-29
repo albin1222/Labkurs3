@@ -56,11 +56,9 @@ namespace Labkurs3.Controllers
         public JsonResult Post(LlojeteProdukteve llp)
         {
             string query = @"
-                    insert into dbo.LlojeteProdukteve values
-                    ('" + llp.IdeProduktit + @"'
-                    ,'" + llp.LlojiIProduktit + @"'
-                    )
-                    ";
+            insert into dbo.LlojeteProdukteve values
+            ('" + llp.LlojiIProduktit + @"')
+             ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
             SqlDataReader myReader;
@@ -71,22 +69,22 @@ namespace Labkurs3.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader); ;
-
                     myReader.Close();
                     myCon.Close();
+
                 }
             }
-            return new JsonResult("Added Succesfully");
+
+            return new JsonResult("Added Successfully");
         }
         [HttpPut]
         public JsonResult Put(LlojeteProdukteve llp)
         {
             string query = @"
                     update dbo.LlojeteProdukteve set 
-                    IdeProduktit = '" + llp.IdeProduktit + @"'
-                    ,LlojiIProduktit = '" + llp.LlojiIProduktit + @"'
-                   
-                    ";
+                    LlojiIProduktit ='" + llp.LlojiIProduktit + @"'
+               where IdeProduktit = " + llp.IdeProduktit + @" 
+              ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
             SqlDataReader myReader;
