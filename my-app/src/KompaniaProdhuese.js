@@ -38,7 +38,7 @@ export class KompaniaProdhuese extends Component{
         }
     }
     render(){
-        const {komps, kompid,kompname}=this.state;
+        const {komps, kompid,kompname,kompnrB}=this.state;
         let addModalClose=()=>this.setState({addModalShow:false});
         let editModalClose=()=>this.setState({editModalShow:false});
         return(
@@ -62,7 +62,7 @@ export class KompaniaProdhuese extends Component{
 <ButtonToolbar>
     <Button className="mr-2" variant="info"
     onClick={()=>this.setState({editModalShow:true,
-        kompid:komp.KompaniaID,kompname:komp.EmriKompanis})}>
+        kompid:komp.KompaniaID,kompname:komp.EmriKompanis,kompnrB:komp.NumriBiznesit})}>
             Edit
         </Button>
 
@@ -74,7 +74,8 @@ export class KompaniaProdhuese extends Component{
         <EditKompModal show={this.state.editModalShow}
         onHide={editModalClose}
         kompid={kompid}
-        kompname={kompname}/>
+        kompname={kompname}
+        kompnrB={kompnrB}/>
         
 </ButtonToolbar>
 

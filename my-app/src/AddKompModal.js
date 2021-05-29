@@ -17,7 +17,8 @@ export class AddKompModal extends Component{
             },
             body:JSON.stringify({
             
-                EmriQytetit:event.target.EmriQytetit.value
+                EmriKompanis:event.target.EmriKompanis.value,
+                NumriBiznesit:event.target.NumriBiznesit.value
             })
         })
         .then(res=>res.json())
@@ -54,9 +55,15 @@ centered
                         placeholder="EmriKompanis"/>
                     </Form.Group>
 
+                    <Form.Group controlId="NumriBiznesit">
+                        <Form.Label>NumriBiznesit</Form.Label>
+                        <Form.Control type="number" name="NumriBiznesit" required 
+                        placeholder="NumriBiznesit"/>
+                    </Form.Group>
+
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                            Add EmriKompani
+                            Add Kompani
                         </Button>
                     </Form.Group>
                 </Form>

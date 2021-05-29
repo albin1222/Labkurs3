@@ -64,6 +64,13 @@ centered
                         placeholder="EmriKompanis"/>
                     </Form.Group>
 
+                    <Form.Group controlId="NumriBiznesit">
+                        <Form.Label>NumriBiznesit</Form.Label>
+                        <Form.Control type="number" name="NumriBiznesit" required 
+                        defaultValue={this.props.kompnrB}
+                        placeholder="NumriBiznesit"/>
+                    </Form.Group>
+
                     <Form.Group>
                         <Button variant="primary" type="submit">
                             Update Kompanin
