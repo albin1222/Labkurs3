@@ -4,6 +4,7 @@ import './App.css';
 import {Home}from './Home';
 import {KompaniaProdhuese}from './KompaniaProdhuese';
 import {Navigation}from './Navigation';
+import {Produkti}from './Produkti';
 
 import{BrowserRouter,Route,Switch }from 'react-router-dom';
 
@@ -19,7 +20,7 @@ function App() {
       <Switch>
         <Route path='/' component={Home} exact/>
         <Route path='/KompaniaProdhuese/' component={KompaniaProdhuese} exact/>
-        
+        <Route path='/Produkti/' component={Produkti} exact/>
 
       </Switch>
 
