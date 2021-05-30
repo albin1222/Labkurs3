@@ -5,6 +5,8 @@ import {Home}from './Home';
 import {KompaniaProdhuese}from './KompaniaProdhuese';
 import {Navigation}from './Navigation';
 import {Produkti}from './Produkti';
+import {LlojeteProdukteve}from './LlojeteProdukteve';
+
 
 import{BrowserRouter,Route,Switch }from 'react-router-dom';
 
@@ -13,7 +15,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <h3 className="m-3 d-flex justify-content-center">
-      Electronic Shop
+      ONLINE SHOP
       </h3>
 
       <Navigation/>
@@ -21,6 +23,7 @@ function App() {
         <Route path='/' component={Home} exact/>
         <Route path='/KompaniaProdhuese/' component={KompaniaProdhuese} exact/>
         <Route path='/Produkti/' component={Produkti} exact/>
+        <Route path='/LlojeteProdukteve/' component={LlojeteProdukteve} exact/>
 
       </Switch>
 

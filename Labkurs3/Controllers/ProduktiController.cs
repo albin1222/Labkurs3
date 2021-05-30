@@ -45,12 +45,11 @@ namespace Labkurs3.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader); ;
-
                     myReader.Close();
                     myCon.Close();
+
                 }
             }
-
             return new JsonResult(table);
         }
 
@@ -159,10 +158,12 @@ namespace Labkurs3.Controllers
                 }
                 return new JsonResult(filename);
             }
+
             catch (Exception)
             {
-                throw;
+
                 return new JsonResult("anonymous.png");
+
             }
         }
         [Route("GetAllProduktiNames")]

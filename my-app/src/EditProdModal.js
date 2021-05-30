@@ -13,13 +13,12 @@ export class EditProdModal extends Component{
     imagesrc = process.env.REACT_APP_PHOTOPATH+this.photofilename;
 
     componentDidMount(){
-        fetch(process.env.REACT_APP_API+'produkti')
+        fetch(process.env.REACT_APP_API+'department')
         .then(response=>response.json())
         .then(data=>{
-            this.setState({prods:data});
+            this.setState({deps:data});
         });
     }
-
     handleSubmit(event){
         event.preventDefault();
         fetch(process.env.REACT_APP_API+'produkti',{
@@ -145,7 +144,7 @@ centered
 
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                            Update Produkt
+                        Perditëso Produktin
                         </Button>
                     </Form.Group>
                 </Form>

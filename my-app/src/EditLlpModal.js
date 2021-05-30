@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 
-export class EditKompModal extends Component{
+export class EditLlpModal extends Component{
     constructor(props){
         super(props);
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -9,16 +9,15 @@ export class EditKompModal extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API+'kompaniaprodhuese',{
+        fetch(process.env.REACT_APP_API+'llojeteprodukteve',{
             method:'PUT',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                KompaniaID:event.target.KompaniaID.value,
-                EmriKompanis:event.target.EmriKompanis.value,
-                NumriBiznesit:event.target.NumriBiznesit.value
+                IdeProduktit:event.target.IdeProduktit.value,
+                LlojiIProduktit:event.target.LlojiIProduktit.value,
             })
         })
         .then(res=>res.json())
@@ -41,7 +40,7 @@ centered
 >
     <Modal.Header clooseButton>
         <Modal.Title id="contained-modal-title-vcenter">
-            Perditëso Kompanin
+        Perditëso Produktin
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
@@ -49,31 +48,25 @@ centered
         <Row>
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="KompaniaID">
-                        <Form.Label>KompaniaID</Form.Label>
-                        <Form.Control type="text" name="KompaniaID" required
+                <Form.Group controlId="IdeProduktit">
+                        <Form.Label>IdeProduktit</Form.Label>
+                        <Form.Control type="text" name="IdeProduktit" required
                         disabled
-                        defaultValue={this.props.kompid} 
-                        placeholder="EmriKompanis"/>
+                        defaultValue={this.props.llpid} 
+                        placeholder="LlojiIProduktit"/>
                     </Form.Group>
 
-                    <Form.Group controlId="EmriKompanis">
-                        <Form.Label>EmriKompanis</Form.Label>
-                        <Form.Control type="text" name="EmriKompanis" required 
-                        defaultValue={this.props.kompname}
-                        placeholder="EmriKompanis"/>
+                    <Form.Group controlId="LlojiIProduktit">
+                        <Form.Label>LlojiIProduktit</Form.Label>
+                        <Form.Control type="text" name="LlojiIProduktit" required 
+                        defaultValue={this.props.llpp}
+                        placeholder="LlojiIProduktit"/>
                     </Form.Group>
 
-                    <Form.Group controlId="NumriBiznesit">
-                        <Form.Label>NumriBiznesit</Form.Label>
-                        <Form.Control type="number" name="NumriBiznesit" required 
-                        defaultValue={this.props.kompnrB}
-                        placeholder="NumriBiznesit"/>
-                    </Form.Group>
 
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                        Perditëso Kompanin
+                            Perditëso Produktin
                         </Button>
                     </Form.Group>
                 </Form>
@@ -82,7 +75,7 @@ centered
     </Modal.Body>
 
     <Modal.Footer>
-        <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+        <Button variant="danger" onClick={this.props.onHide}>Mbylle</Button>
     </Modal.Footer>
 
 </Modal>

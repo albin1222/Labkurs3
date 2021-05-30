@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+th {
+  color: #ffffff;
+}
+td{
+  color: #ffffff;
+}
+.mt-5{
+  color: #ffffff;
+}
+.m-3{
+  color: #ffffff;
+}

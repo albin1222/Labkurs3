@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+ background-image: url('https://image.freepik.com/free-vector/dark-abstract-background-texture-with-diagonal-lines_43969-660.jpg');
+  position: fixed ;
+ min-width: 100%;
+ min-height: 100%;
+  background-size: cover;
+  background-position: top ;
 }
 
 .App-logo {
@@ -14,14 +20,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .App-link {
