@@ -4,7 +4,7 @@ import {Modal,Button, Row, Col, Form,Image} from 'react-bootstrap';
 export class EditProdModal extends Component{
     constructor(props){
         super(props);
-        this.state={prods:[]};
+        this.state={prods:[],prodll:[]};
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleFileSelected=this.handleFileSelected.bind(this);
     }
@@ -13,12 +13,18 @@ export class EditProdModal extends Component{
     imagesrc = process.env.REACT_APP_PHOTOPATH+this.photofilename;
 
     componentDidMount(){
-        fetch(process.env.REACT_APP_API+'department')
+        fetch(process.env.REACT_APP_API+'kompaniaprodhuese')
         .then(response=>response.json())
         .then(data=>{
-            this.setState({deps:data});
+            this.setState({prods:data}); 
+        });
+        fetch(process.env.REACT_APP_API+'llojeteprodukteve')
+        .then(response=>response.json())
+        .then(data2=>{
+            this.setState({prodll:data2}); 
         });
     }
+    
     handleSubmit(event){
         event.preventDefault();
         fetch(process.env.REACT_APP_API+'produkti',{
@@ -124,10 +130,13 @@ centered
 
                     <Form.Group controlId="LlojiIProduktit">
                         <Form.Label>LlojiIProduktit</Form.Label>
-                        <Form.Control type="text" name="LlojiIProduktit" required 
-                        defaultValue={this.props.prodll}
-                        placeholder="LlojiIProduktit"/>
+                        <Form.Control as="select" defaultValue={this.props.komp}>
+                        {this.state.prodll.map(prod=>
+                            <option key={prod.ProduktID}>{prod.LlojiIProduktit}</option>)}
+                        </Form.Control>
                     </Form.Group>
+
+                    
 
                     <Form.Group controlId="DataENdertimit">
                         <Form.Label>DataENdertimit</Form.Label>

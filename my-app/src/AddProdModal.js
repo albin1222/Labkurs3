@@ -4,7 +4,7 @@ import {Modal,Button, Row, Col, Form,Image} from 'react-bootstrap';
 export class AddProdModal extends Component{
     constructor(props){
         super(props);
-        this.state={prods:[]};
+        this.state={prods:[],prodll:[]};
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleFileSelected=this.handleFileSelected.bind(this);
     }
@@ -13,12 +13,19 @@ export class AddProdModal extends Component{
     imagesrc = process.env.REACT_APP_PHOTOPATH+this.photofilename;
 
     componentDidMount(){
-        fetch(process.env.REACT_APP_API+'produkti')
+        fetch(process.env.REACT_APP_API+'kompaniaprodhuese')
         .then(response=>response.json())
         .then(data=>{
             this.setState({prods:data});
         });
+
+        fetch(process.env.REACT_APP_API+'llojeteprodukteve')
+        .then(response=>response.json())
+        .then(data2=>{
+            this.setState({prodll:data2}); 
+        });
     }
+    
 
     handleSubmit(event){
         event.preventDefault();
@@ -107,17 +114,21 @@ centered
 
                     <Form.Group controlId="EmriKompanis">
                         <Form.Label>EmriKompanis</Form.Label>
-                        <Form.Control as="select">
+                        <Form.Control as="select" defaultValue={this.props.qytmt}>
                         {this.state.prods.map(prod=>
                             <option key={prod.ProduktID}>{prod.EmriKompanis}</option>)}
                         </Form.Control>
                     </Form.Group>
-                
+
                     <Form.Group controlId="LlojiIProduktit">
                         <Form.Label>LlojiIProduktit</Form.Label>
-                        <Form.Control type="text" name="LlojiIProduktit" required 
-                        placeholder="LlojiIProduktit"/>
-                    </Form.Group>            
+                        <Form.Control as="select" defaultValue={this.props.qytmt}>
+                        {this.state.prodll.map(prod=>
+                            <option key={prod.ProduktID}>{prod.LlojiIProduktit}</option>)}
+                        </Form.Control>
+                    </Form.Group>
+                
+                            
 
                     <Form.Group controlId="DataENdertimit">
                         <Form.Label>DataENdertimit</Form.Label>
