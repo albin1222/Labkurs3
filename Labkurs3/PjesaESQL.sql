@@ -47,6 +47,7 @@ insert into dbo.Produkti values
 --) 
 --select *from dbo.ContactForm
 --insert into dbo.ContactForm values ('Lea','lea1@hotmail.com', 'Pyetje')
+
 create table dbo.PreferencatETel (
 
  Id int identity (1,1),
@@ -57,3 +58,15 @@ create table dbo.PreferencatETel (
  Extra varchar(500)
 )
 insert into dbo.PreferencatETel values ('Iphone x','Rose gold max', '2','64','none')
+
+  create table Phone (
+  ID int identity(1,1),
+  Name varchar(500),
+  Company varchar(500),
+  Preferences varchar(500),
+  Other varchar(500),
+  )
+
+  select * from dbo.Phone
+  insert into dbo.Phone values ('Iphone','Apple','','none')
+

@@ -8,6 +8,7 @@ import {Produkti}from './Produkti';
 import {ContactForm}from './ContactForm';
 import {LlojeteProdukteve}from './LlojeteProdukteve';
 import {PreferencatETel}from './PreferencatETel';
+import {Phone}from './Phone';
 
 
 import{BrowserRouter,Route,Switch }from 'react-router-dom';
@@ -27,6 +28,7 @@ function App() {
         <Route path='/ContactForm/' component={ContactForm} exact/>
         <Route path='/Produkti/' component={Produkti} exact/>
         <Route path='/LlojeteProdukteve/' component={LlojeteProdukteve} exact/>
+        <Route path='/Phone/' component={Phone} exact/>
 
         <Route path='/PreferencatETel/' component={PreferencatETel} exact/>
 
