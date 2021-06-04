@@ -37,3 +37,13 @@ select *from dbo.Produkti
 
 insert into dbo.Produkti values
 ('HpWorkstation','24','HP','Shtepiz','2020-06-01','anonymous.png')
+
+
+--create table dbo.ContactForm(
+--Id int identity(1,1),
+--Name varchar(500),
+--Email varchar(500),
+--message varchar(500)
+--) 
+--select *from dbo.ContactForm
+--insert into dbo.ContactForm values ('Lea','lea1@hotmail.com', 'Pyetje')

@@ -5,6 +5,7 @@ import {Home}from './Home';
 import {KompaniaProdhuese}from './KompaniaProdhuese';
 import {Navigation}from './Navigation';
 import {Produkti}from './Produkti';
+import {ContactForm}from './ContactForm';
 import {LlojeteProdukteve}from './LlojeteProdukteve';
 
 
@@ -22,6 +23,7 @@ function App() {
       <Switch>
         <Route path='/' component={Home} exact/>
         <Route path='/KompaniaProdhuese/' component={KompaniaProdhuese} exact/>
+        <Route path='/ContactForm/' component={ContactForm} exact/>
         <Route path='/Produkti/' component={Produkti} exact/>
         <Route path='/LlojeteProdukteve/' component={LlojeteProdukteve} exact/>
 
