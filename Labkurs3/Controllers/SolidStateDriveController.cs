@@ -13,26 +13,25 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Labkurs3.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class ProcesoriController : Controller
+    public class SolidStateDriveController : Controller
     {
         private readonly IConfiguration _configuration;
-       
 
-        public ProcesoriController(IConfiguration configuration)
+
+        public SolidStateDriveController(IConfiguration configuration)
         {
             _configuration = configuration;
-            
+
         }
 
         [HttpGet]
         public JsonResult Get()
         {
             string query = @"
-                    select Id, LlojiFirmes, Gjenerata,Specifika,Qmimi
-                    from dbo.Procesori
+                    select Id, LlojiFirmes, Verzioni,GB,Qmimi
+                    from dbo.SolidStateDrive
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
@@ -53,16 +52,16 @@ namespace Labkurs3.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(Procesori proc)
+        public JsonResult Post(SolidStateDrive ssd)
         {
             string query = @"
-                    insert into dbo.Procesori 
-                    (LlojiFirmes,Gjenerata,Specifika,Qmimi)            
+                    insert into dbo.SolidStateDrive 
+                    (LlojiFirmes,Verzioni,GB,Qmimi)            
                     values
-                    ('" + proc.LlojiFirmes + @"'
-                    ,'" + proc.Gjenerata + @"'
-                    ,'" + proc.Specifika + @"'
-                    ,'" + proc.Qmimi + @"'
+                    ('" + ssd.LlojiFirmes + @"'
+                    ,'" + ssd.Verzioni + @"'
+                    ,'" + ssd.GB + @"'
+                    ,'" + ssd.Qmimi + @"'
                     
                     )
                     ";
@@ -84,15 +83,15 @@ namespace Labkurs3.Controllers
             return new JsonResult("Added Succesfully");
         }
         [HttpPut]
-        public JsonResult Put(Procesori proc)
+        public JsonResult Put(SolidStateDrive ssd)
         {
             string query = @"
-                    update dbo.Procesori set 
-                    LlojiFirmes = '" + proc.LlojiFirmes + @"'
-                    ,Gjenerata = '" + proc.Gjenerata + @"'
-                    ,Specifika = '" + proc.Specifika + @"'
-                    ,Qmimi = '" + proc.Qmimi + @"'
-                    where Id = " + proc.Id + @"
+                    update dbo.SolidStateDrive set 
+                    LlojiFirmes = '" + ssd.LlojiFirmes + @"'
+                    ,Verzioni = '" + ssd.Verzioni + @"'
+                    ,GB = '" + ssd.GB + @"'
+                    ,Qmimi = '" + ssd.Qmimi + @"'
+                    where Id = " + ssd.Id + @"
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
@@ -116,7 +115,7 @@ namespace Labkurs3.Controllers
         public JsonResult Delete(int id)
         {
             string query = @"
-                    delete from dbo.Procesori 
+                    delete from dbo.SolidStateDrive 
                     where Id = " + id + @"
                     ";
             DataTable table = new DataTable();
@@ -136,10 +135,5 @@ namespace Labkurs3.Controllers
             }
             return new JsonResult("Deleted Succesfully");
         }
-
-       
-
-           
-        
     }
 }

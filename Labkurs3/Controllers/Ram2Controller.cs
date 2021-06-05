@@ -16,23 +16,23 @@ namespace Labkurs3.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProcesoriController : Controller
+    public class Ram2Controller : Controller
     {
         private readonly IConfiguration _configuration;
-       
 
-        public ProcesoriController(IConfiguration configuration)
+
+        public Ram2Controller(IConfiguration configuration)
         {
             _configuration = configuration;
-            
+
         }
 
         [HttpGet]
         public JsonResult Get()
         {
             string query = @"
-                    select Id, LlojiFirmes, Gjenerata,Specifika,Qmimi
-                    from dbo.Procesori
+                    select Id, LlojiFirmes, Verzioni,GB,Qmimi
+                    from dbo.RAM2
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
@@ -53,16 +53,16 @@ namespace Labkurs3.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(Procesori proc)
+        public JsonResult Post(RAM2 ram2)
         {
             string query = @"
-                    insert into dbo.Procesori 
-                    (LlojiFirmes,Gjenerata,Specifika,Qmimi)            
+                    insert into dbo.RAM2
+                    (LlojiFirmes,Verzioni,GB,Qmimi)            
                     values
-                    ('" + proc.LlojiFirmes + @"'
-                    ,'" + proc.Gjenerata + @"'
-                    ,'" + proc.Specifika + @"'
-                    ,'" + proc.Qmimi + @"'
+                    ('" + ram2.LlojiFirmes + @"'
+                    ,'" + ram2.Verzioni + @"'
+                    ,'" + ram2.GB + @"'
+                    ,'" + ram2.Qmimi + @"'
                     
                     )
                     ";
@@ -84,15 +84,15 @@ namespace Labkurs3.Controllers
             return new JsonResult("Added Succesfully");
         }
         [HttpPut]
-        public JsonResult Put(Procesori proc)
+        public JsonResult Put(RAM2 ram2)
         {
             string query = @"
-                    update dbo.Procesori set 
-                    LlojiFirmes = '" + proc.LlojiFirmes + @"'
-                    ,Gjenerata = '" + proc.Gjenerata + @"'
-                    ,Specifika = '" + proc.Specifika + @"'
-                    ,Qmimi = '" + proc.Qmimi + @"'
-                    where Id = " + proc.Id + @"
+                    update dbo.RAM2 set 
+                    LlojiFirmes = '" + ram2.LlojiFirmes + @"'
+                    ,Verzioni = '" + ram2.Verzioni + @"'
+                    ,GB = '" + ram2.GB + @"'
+                    ,Qmimi = '" + ram2.Qmimi + @"'
+                    where Id = " + ram2.Id + @"
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("Labkurs3AppCon");
@@ -116,7 +116,7 @@ namespace Labkurs3.Controllers
         public JsonResult Delete(int id)
         {
             string query = @"
-                    delete from dbo.Procesori 
+                    delete from dbo.RAM2 
                     where Id = " + id + @"
                     ";
             DataTable table = new DataTable();
@@ -136,10 +136,5 @@ namespace Labkurs3.Controllers
             }
             return new JsonResult("Deleted Succesfully");
         }
-
-       
-
-           
-        
     }
 }
