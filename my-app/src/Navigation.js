@@ -28,9 +28,13 @@ export class Navigation extends Component{
                         <NavLink className="d-inline p-2 bg-dark text-white" to="/preferencatetel">
                         Preferencat e telefonit
                         </NavLink>
+                        <NavLink className="d-inline p-2 bg-dark text-white" to="/procesori">
+                        Procesori
+                        </NavLink>
                         <NavLink className="d-inline p-2 bg-dark text-white" to="/ContactForm">
                         Kontakti
                         </NavLink>
+                        
                         
                     </Nav>
                 </Navbar.Collapse>

@@ -9,6 +9,7 @@ import {ContactForm}from './ContactForm';
 import {LlojeteProdukteve}from './LlojeteProdukteve';
 import {PreferencatETel}from './PreferencatETel';
 import {Phone}from './Phone';
+import {Procesori}from './Procesori';
 
 
 import{BrowserRouter,Route,Switch }from 'react-router-dom';
@@ -29,6 +30,7 @@ function App() {
         <Route path='/Produkti/' component={Produkti} exact/>
         <Route path='/LlojeteProdukteve/' component={LlojeteProdukteve} exact/>
         <Route path='/Phone/' component={Phone} exact/>
+        <Route path='/Procesori/' component={Procesori} exact/>
 
         <Route path='/PreferencatETel/' component={PreferencatETel} exact/>
 
